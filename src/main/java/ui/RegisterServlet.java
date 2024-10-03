@@ -1,6 +1,7 @@
 package ui;
 
 
+import bo.CustomerHandler;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,14 +9,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
-
-    // Simulated in-memory storage for registered users
-    private static final Map<String, String> userDatabase = new HashMap<>();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -26,15 +25,19 @@ public class RegisterServlet extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String password = request.getParameter("password");
 
+        CustomerInfo customer = new CustomerInfo(-1,password,"",email,lastName,firstName);
         // Check if the username already exists
-        if (userDatabase.containsKey(email)) {
-            // If the username exists, set an error message and forward to signup.jsp
-            request.setAttribute("errorMessage", "Username already exists. Please choose another.");
-            request.getRequestDispatcher("/signup.jsp").forward(request, response);
-        } else {
-            // Register the new user
-            userDatabase.put(email, password);
-            response.sendRedirect("index.jsp");  // Redirect to login page after successful registration
+        try {
+            if (CustomerHandler.addCustomer(customer)) {
+                // If the username exists, set an error message and forward to signup.jsp
+                response.sendRedirect("login.jsp");
+
+            } else {
+                request.setAttribute("errorMessage", "Username already exists. Please choose another.");
+                request.getRequestDispatcher("/signup.jsp").forward(request, response);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 

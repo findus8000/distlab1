@@ -24,7 +24,7 @@ CREATE TABLE Product (
 
 -- Creating Customer table
 CREATE TABLE Customer (
-                          CustomerID INT PRIMARY KEY,
+                          CustomerID INT PRIMARY KEY AUTO_INCREMENT,
                           FirstName NVARCHAR(50) NOT NULL,
                           LastName NVARCHAR(50) NOT NULL,
                           Email NVARCHAR(255) NOT NULL UNIQUE,  -- Ensuring unique emails for customers
