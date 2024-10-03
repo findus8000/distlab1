@@ -1,4 +1,4 @@
-package kth.distlab1;
+package bo;
 
 import java.io.*;
 import jakarta.servlet.http.*;

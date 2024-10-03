@@ -36,7 +36,7 @@ CREATE TABLE Customer (
 CREATE TABLE OrderHeader (
                              OrderID INT PRIMARY KEY,
                              CustomerID INT,
-                             OrderDate DATETIME NOT NULL DEFAULT GETDATE(),  -- Set default order date to current date
+                             OrderDate DATETIME NOT NULL,  -- Set default order date to current date
                              TotalAmount DECIMAL(10, 2) NOT NULL,
                              ShippingAddress NVARCHAR(255),  -- Increased size for addresses
                              BillingAddress NVARCHAR(255),    -- Increased size for addresses
