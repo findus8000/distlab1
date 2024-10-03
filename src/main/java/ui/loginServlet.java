@@ -1,7 +1,10 @@
-package kth.distlab1;
+package ui;
 
 import java.io.*;
+import java.util.Collection;
+import java.util.Iterator;
 
+import bo.CustomerHandler;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -19,9 +22,19 @@ public class loginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        // Validate the credentials
-        if (Email.equals(email) && PASSWORD.equals(password)) {
+        String dbEmail = null;
+        String dbPassword = null;
 
+        Collection<CustomerInfo> result = CustomerHandler.getCustomersByEmail(email);
+        for (CustomerInfo c : result) {
+            dbEmail = c.getEmail();
+            dbPassword = c.getPasswordHash();
+        }
+
+        if (dbEmail == null){
+            request.setAttribute("errorMessage", "Invalid email or password.");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        } else if (dbEmail.equals(email) && dbPassword.equals(password)) {
             HttpSession session = request.getSession();
             session.setAttribute("email", email);  // Store email in the session
             response.sendRedirect("home.jsp");  // Redirect to home page
@@ -32,12 +45,12 @@ public class loginServlet extends HttpServlet {
         }
     }
 
-    /*@Override
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Redirect to the login page (index.jsp) when accessing /hello via GET
         response.sendRedirect(request.getContextPath() + "/");
-    }*/
+    }
 
     public void destroy() {
     }

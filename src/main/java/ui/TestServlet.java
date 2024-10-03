@@ -1,4 +1,4 @@
-package bo;
+package ui;
 
 import java.io.*;
 

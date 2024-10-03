@@ -1,4 +1,4 @@
-package kth.distlab1;
+package ui;
 
 
 import jakarta.servlet.ServletException;

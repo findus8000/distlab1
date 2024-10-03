@@ -15,16 +15,6 @@
 </head>
 <body>
 <a href="login.jsp">Login</a>
-<h1>
-    PRODUCTS:<br>
-  <%
-      Collection<ProductInfo> a = ProductHandler.getAllProducts();
-      for(Iterator i = a.iterator(); i.hasNext();){
-          ProductInfo p =(ProductInfo) i.next();%>
-          <%= p.getProductName() %> :
-    <%= p.getPrice() %> <br>
- <%     }%>
-</h1>
 <br/>
 <a href="test-servlet">Hello Servlet</a>
 <strong>${counter}</strong>
