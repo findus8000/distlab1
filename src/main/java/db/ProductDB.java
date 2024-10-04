@@ -12,7 +12,7 @@ public class ProductDB extends bo.Product{
     public static Collection getAllProductsFromDB() {
         Vector v = new Vector();
         try {
-            Connection c = DBManager.getConncection();
+            Connection c = DBManager.getConnection();
             Statement stmt = c.createStatement();
             ResultSet rs = stmt.executeQuery("select * from Product");
 

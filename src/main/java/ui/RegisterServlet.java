@@ -26,10 +26,9 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         CustomerInfo customer = new CustomerInfo(-1,password,"",email,lastName,firstName);
-        // Check if the username already exists
+
         try {
             if (CustomerHandler.addCustomer(customer)) {
-                // If the username exists, set an error message and forward to signup.jsp
                 response.sendRedirect("login.jsp");
 
             } else {

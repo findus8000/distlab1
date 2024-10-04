@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 public class ProductHandler {
+
     public static Collection<ProductInfo> getAllProducts() {
         Collection c = Product.getAllProducts();
         ArrayList<ProductInfo> products = new ArrayList<ProductInfo>();

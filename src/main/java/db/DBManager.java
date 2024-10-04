@@ -20,7 +20,7 @@ public class DBManager {
         }catch (Exception e){ e.printStackTrace(); }
     }
 
-    public static Connection getConncection(){
+    public static Connection getConnection(){
         return getInstance().conn;
     }
 }

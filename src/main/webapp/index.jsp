@@ -17,8 +17,5 @@
 <a href="login.jsp">Login</a>
 <br/>
 <a href="signup.jsp">Signup</a>
-<br>
-<a href="test-servlet">Hello Servlet</a>
-<strong>${counter}</strong>
 </body>
 </html>

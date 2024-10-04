@@ -7,11 +7,12 @@ import java.util.Collection;
 import java.util.Vector;
 
 public class CustomerDB extends bo.Customer{
+
     public static boolean addUserToDB(Customer customer) throws SQLException {
 
         String sql = "INSERT INTO Customer (FirstName, LastName, Email, PhoneNumber, PasswordHash) VALUES (?, ?, ?, ?, ?)";
         try{
-            Connection con = DBManager.getConncection();
+            Connection con = DBManager.getConnection();
             PreparedStatement stmt = con.prepareStatement(sql);
 
 
@@ -35,7 +36,6 @@ public class CustomerDB extends bo.Customer{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return false;
     }
 
@@ -43,7 +43,7 @@ public class CustomerDB extends bo.Customer{
         Vector v = new Vector();
         String sql = "SELECT * FROM Customer WHERE Email = ?";
         try {
-            Connection c = DBManager.getConncection();
+            Connection c = DBManager.getConnection();
             PreparedStatement stmt = c.prepareStatement(sql);
 
             stmt.setString(1, email);
