@@ -16,16 +16,16 @@
     <title>Home page</title>
     <p>Hello, ${sessionScope.email}!</p>
     <h1>
-        PRODUCTS:<br>
+        PRODUKTER:<br>
         <%
             Collection<ProductInfo> a = ProductHandler.getAllProducts();
             for(Iterator i = a.iterator(); i.hasNext();){
                 ProductInfo p =(ProductInfo) i.next();%>
-        <%= p.getProductName() %> :
-        <%= p.getPrice() %> <br>
+        <%= p.getProductName() %> Price:
+        <%= p.getPrice() %>kr/st <br>
         <%     }%>
     </h1>
-
+    <a href="logout">Logout</a>
 </head>
 <body>
 

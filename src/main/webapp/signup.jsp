@@ -13,7 +13,6 @@
 <body>
 <h1>Create an Account</h1>
 
-<!-- Display the error message if it exists in the request -->
 <c:if test="${not empty requestScope.errorMessage}">
     <div style="color: red;">${requestScope.errorMessage}</div>
 </c:if>

@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1>Login to Your Account</h1>
-<!-- Display the error message if it exists -->
+
 <c:if test="${not empty requestScope.errorMessage}">
   <div style="color: red;">${requestScope.errorMessage}</div>
 </c:if>

@@ -37,6 +37,7 @@ public class loginServlet extends HttpServlet {
         } else if (dbEmail.equals(email) && dbPassword.equals(password)) {
             HttpSession session = request.getSession();
             session.setAttribute("email", email);  // Store email in the session
+
             response.sendRedirect("home.jsp");  // Redirect to home page
         } else {
             // Failed login: set an error attribute and forward back to index.jsp
